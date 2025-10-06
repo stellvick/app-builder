@@ -12,26 +12,6 @@ services:
     volumes:
       - expo-workspace:/workspace
       - expo-output:/output
-    labels:
-      coolify.name: "expo-builder-env"
-      coolify.type: "app"
-      coolify.persistent-storage: "expo-workspace:/workspace,expo-output:/output"
-
-  apk-server:
-    image: caddy:alpine
-    container_name: apk-server
-    restart: unless-stopped
-    ports:
-      - "1337:80"
-      - "1338:443"
-    volumes:
-      - expo-output:/usr/share/caddy
-      - etc/caddy/:/etc/caddy/
-    labels:
-      coolify.deployment-domain: "unix.stellvick.fun"
-      coolify.deployment-public: "true"
-      coolify.https: "true"
-      coolify.name: "apk-download-server"
 
 volumes:
   expo-workspace:
