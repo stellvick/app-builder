@@ -22,10 +22,11 @@ services:
     container_name: apk-server
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "1337:80"
       - "443:443"
     volumes:
       - expo-output:/usr/share/caddy
+      - etc/caddy/:/etc/caddy/
     labels:
       coolify.deployment-domain: "unix.stellvick.fun"
       coolify.deployment-public: "true"
