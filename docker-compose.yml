@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  expo-builder-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: expo-builder-env
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    volumes:
+      - expo-workspace:/workspace
+      - expo-output:/output
+    labels:
+      coolify.name: "expo-builder-env"
+      coolify.type: "app"
+      coolify.persistent-storage: "expo-workspace:/workspace,expo-output:/output"
+
+  apk-server:
+    image: caddy:alpine
+    container_name: apk-server
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - expo-output:/usr/share/caddy
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    labels:
+      coolify.deployment-domain: "unix.stellvick.fun"
+      coolify.deployment-public: "true"
+      coolify.https: "true"
+      coolify.name: "apk-download-server"
+
+volumes:
+  expo-workspace:
+  expo-output:
