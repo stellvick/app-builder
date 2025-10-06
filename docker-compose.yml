@@ -25,7 +25,7 @@ services:
       - "80:80"
     volumes:
       - expo-output:/usr/share/caddy
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - /app/Caddyfile:/etc/caddy/Caddyfile
     labels:
       coolify.deployment-domain: "unix.stellvick.fun"
       coolify.deployment-public: "true"
