@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     ports:
       - "1337:80"
-      - "443:443"
+      - "1338:443"
     volumes:
       - expo-output:/usr/share/caddy
       - etc/caddy/:/etc/caddy/
