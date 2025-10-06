@@ -23,9 +23,9 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - expo-output:/usr/share/caddy
-      - etc/caddy/:/etc/caddy/
     labels:
       coolify.deployment-domain: "unix.stellvick.fun"
       coolify.deployment-public: "true"
